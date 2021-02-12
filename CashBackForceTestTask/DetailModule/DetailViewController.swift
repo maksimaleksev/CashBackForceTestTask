@@ -28,7 +28,11 @@ class DetailViewController: UIViewController {
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.navigationItem.title = presenter.detailTitle
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+        self.titleLabel.text = presenter.photoViewModel.photoTitle
+        self.urlLabel.text = presenter.photoViewModel.imageUrl
+        self.imageView.webImage(presenter.photoViewModel.imageUrl)
     }
     
     //MARK: - IBActions
@@ -38,3 +42,7 @@ class DetailViewController: UIViewController {
 
 //MARK: - Detail View Protocol
 extension DetailViewController: DetailViewProtocol{ }
+
+
+
+

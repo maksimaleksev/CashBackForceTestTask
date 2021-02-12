@@ -55,8 +55,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="image" destination="epB-hz-LqB" id="Hhs-54-EVH"/>
-                                            <outlet property="resourceImageView" destination="epB-hz-LqB" id="Sjt-gc-Xp7"/>
+                                            <outlet property="thumbinalImageView" destination="epB-hz-LqB" id="Sjt-gc-Xp7"/>
                                             <outlet property="titleLabel" destination="gfs-cc-fwM" id="KtU-wS-EBZ"/>
                                             <segue destination="KOX-9u-GaR" kind="show" identifier="DetailViewController" id="fXK-mK-P0A"/>
                                         </connections>

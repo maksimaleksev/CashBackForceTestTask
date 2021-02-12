@@ -11,7 +11,12 @@ protocol DetailPresenterProtocol: class {
     var view: DetailViewProtocol! { get }
     var interactor: DetailInteractorProtocol! { get set }
     var router: DetailRouterProtocol! { get set }
-    init (_ view: DetailViewProtocol)
+    var photoViewModel: PhotoViewModel { get }
+    var detailTitle: String { get }
+    
+    init (_ view: DetailViewProtocol, photoViewModel: PhotoViewModel)
+    
+    
 }
 
 class DetailPresenter: DetailPresenterProtocol {
@@ -23,9 +28,15 @@ class DetailPresenter: DetailPresenterProtocol {
     
     var router: DetailRouterProtocol!
     
+    var photoViewModel: PhotoViewModel
+    
+    var detailTitle: String = "Photo"
+    
     //MARK: - Init
-    required init(_ view: DetailViewProtocol) {
+    required init(_ view: DetailViewProtocol, photoViewModel: PhotoViewModel) {
         self.view = view
+        self.photoViewModel = photoViewModel
+        
     }
     
     //MARK: - Methods

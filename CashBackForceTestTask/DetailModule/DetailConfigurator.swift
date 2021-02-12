@@ -8,15 +8,15 @@
 import Foundation
 
 protocol DetailConfiguratorProtocol: class {
-    func configure(_ viewController: DetailViewController)
+    func configure(_ viewController: DetailViewController, photoViewModel: PhotoViewModel)
 }
 
 class DetailConfigurator: DetailConfiguratorProtocol {
     
     
-    func configure(_ viewController: DetailViewController) {
+    func configure(_ viewController: DetailViewController, photoViewModel: PhotoViewModel) {
         
-        let presenter = DetailPresenter(viewController)
+        let presenter = DetailPresenter(viewController, photoViewModel: photoViewModel)
         let interactor = DetailInteractor(presenter)
         let router = DetailRouter(viewController)
         

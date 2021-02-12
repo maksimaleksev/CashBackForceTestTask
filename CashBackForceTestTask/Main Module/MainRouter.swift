@@ -27,5 +27,12 @@ class MainRouter: MainRouterProtocol {
     
     func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
+        if segue.identifier == String(describing: DetailViewController.self) {
+            guard let detailVC = segue.destination as? DetailViewController else { return }
+            guard let selectedRow = viewController.tableView.indexPathForSelectedRow?.row else { return }
+            let photoViewModel = viewController.presenter.getViewModel(for: selectedRow)
+            detailVC.configurator.configure(detailVC, photoViewModel: photoViewModel)
+            
+        }
     }
 }
