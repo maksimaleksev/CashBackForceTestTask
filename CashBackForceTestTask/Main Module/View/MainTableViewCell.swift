@@ -30,5 +30,4 @@ class MainTableViewCell: UITableViewCell {
         self.titleLabel.text = title
         self.thumbinalImageView.webImage(thumbUrl)
     }
-    
 }

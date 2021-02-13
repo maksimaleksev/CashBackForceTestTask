@@ -5,18 +5,19 @@
 //  Created by Maxim Alekseev on 12.02.2021.
 //
 
-import Foundation
+import UIKit
 
 protocol DetailPresenterProtocol: class {
     var view: DetailViewProtocol! { get }
     var interactor: DetailInteractorProtocol! { get set }
     var router: DetailRouterProtocol! { get set }
-    var photoViewModel: PhotoViewModel { get }
+    var viewModel: PhotoViewModel { get }
     var detailTitle: String { get }
     
-    init (_ view: DetailViewProtocol, photoViewModel: PhotoViewModel)
+    init (_ view: DetailViewProtocol, viewModel: PhotoViewModel)
     
-    
+    func copy(text: String?)
+    func pasteText() -> String?
 }
 
 class DetailPresenter: DetailPresenterProtocol {
@@ -27,17 +28,28 @@ class DetailPresenter: DetailPresenterProtocol {
     internal var interactor: DetailInteractorProtocol!
     
     var router: DetailRouterProtocol!
-    
-    var photoViewModel: PhotoViewModel
-    
+        
     var detailTitle: String = "Photo"
     
+    var viewModel: PhotoViewModel
+    
     //MARK: - Init
-    required init(_ view: DetailViewProtocol, photoViewModel: PhotoViewModel) {
+    required init(_ view: DetailViewProtocol, viewModel: PhotoViewModel) {
         self.view = view
-        self.photoViewModel = photoViewModel
-        
+        self.viewModel = viewModel
     }
     
+    
     //MARK: - Methods
+    
+    func copy(text: String?) {
+        guard let text = text else { return }
+        UIPasteboard.general.string = text
+    }
+    
+    func pasteText() -> String? {
+        return UIPasteboard.general.string
+    }
+
+    
 }

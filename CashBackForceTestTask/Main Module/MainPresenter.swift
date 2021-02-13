@@ -14,15 +14,23 @@ protocol MainPresenterProtocol: class {
     var router: MainRouterProtocol! { get set }
     var cellNumbers: Int { get }
     var mainTitle: String { get }
+    var mode: VCMode { get }
     
     init (_ view: MainViewProtocol)
     
-    func getViewModel(for row:Int) -> PhotoViewModel
+    func getWebViewModel(for row:Int) -> PhotoViewModel
     func startPresenting()
     
 }
 
+enum VCMode {
+    case Web
+    case Cached
+}
+
+
 class MainPresenter: MainPresenterProtocol {
+    
     
     //MARK: - Properties
     internal weak var view: MainViewProtocol!
@@ -39,6 +47,16 @@ class MainPresenter: MainPresenterProtocol {
         return photos.count
     }
     
+    var mode: VCMode {
+        
+        if interactor.cacheIsEmpty {
+            return .Web
+        } else {
+            return .Cached
+        }
+        
+    }
+    
     //MARK: - Init
     required init(_ view: MainViewProtocol) {
         self.view = view
@@ -46,17 +64,29 @@ class MainPresenter: MainPresenterProtocol {
     
     //MARK: - Methods
     
-    func getViewModel(for row: Int) -> PhotoViewModel {
+    func getWebViewModel(for row: Int) -> PhotoViewModel {
         return photos[row]
     }
     
+    
     func startPresenting() {
         
-        self.interactor.getPhotoData { [weak self] gettedPhotos in
-            guard let self = self, let gettedPhotos = gettedPhotos else { return }
-            self.photos = gettedPhotos
-            self.view.updateTableViewData()
-        }
+        switch mode {
         
+        case .Web:
+            self.loadWebData()
+        case .Cached:
+            self.photos = interactor.getCachedPhotoData()
+            self.loadWebData()
+        }
+    }
+    
+    private func loadWebData() {
+        self.interactor.getWebPhotoData { [weak self] webPhotos in
+            guard let self = self, let webPhotos = webPhotos else { return }
+            self.photos = webPhotos
+            self.view.updateTableViewData()
+            self.interactor.saveDataToCache(data: webPhotos)
+        }
     }
 }

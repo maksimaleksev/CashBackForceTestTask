@@ -11,7 +11,6 @@ protocol DetailRouterProtocol: class {
     
     var viewController: DetailViewController! { get }
     init(_ viewController: DetailViewController)
-    func prepare(for segue: UIStoryboardSegue, sender: Any?)
 }
 
 class DetailRouter: DetailRouterProtocol {
@@ -25,9 +24,6 @@ class DetailRouter: DetailRouterProtocol {
     }
     
     //MARK: - Methods
-    func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-    }
     
     
 }

@@ -29,7 +29,6 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         self.configurator.configure(self)
         self.navigationItem.title = presenter.mainTitle
-        self.navigationController?.navigationBar.prefersLargeTitles = true
         self.presenter.startPresenting()
     }
     
@@ -46,7 +45,10 @@ class MainViewController: UIViewController {
 extension MainViewController: MainViewProtocol {
     
     func updateTableViewData() {
-        self.tableView.reloadData()
+        
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
     
 }
@@ -61,8 +63,9 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: MainTableViewCell.reuseId, for: indexPath) as! MainTableViewCell
-        let photoVM = presenter.getViewModel(for: indexPath.row)
-        cell.setCellData(title: photoVM.photoTitle, thumbUrl: photoVM.thumbinalUrl)
+        let photoWebVM = presenter.getWebViewModel(for: indexPath.row)
+        cell.setCellData(title: photoWebVM.photoTitle, thumbUrl: photoWebVM.thumbinalUrl)
+        
         return cell
     }
 }

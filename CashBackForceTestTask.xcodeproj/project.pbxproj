@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		636B4704EC6F19582C5DDF62 /* Pods_CashBackForceTestTask.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0920775A39E4489F7F1238EB /* Pods_CashBackForceTestTask.framework */; };
 		7B0BC72C25D6D7760034664D /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B0BC72B25D6D7760034664D /* MainTableViewCell.swift */; };
+		7B8465F025D7E7A600B09D98 /* PersistanceStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8465EF25D7E7A600B09D98 /* PersistanceStoreManager.swift */; };
 		7BE0D7FC25D6E6A700FFB73F /* NetworkDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE0D7FB25D6E6A700FFB73F /* NetworkDataFetcher.swift */; };
 		7BE0D80325D6E82D00FFB73F /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE0D80225D6E82D00FFB73F /* Resource.swift */; };
 		7BE0D80625D6ED0C00FFB73F /* PhotoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE0D80525D6ED0C00FFB73F /* PhotoResponse.swift */; };
@@ -35,6 +36,7 @@
 /* Begin PBXFileReference section */
 		0920775A39E4489F7F1238EB /* Pods_CashBackForceTestTask.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CashBackForceTestTask.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B0BC72B25D6D7760034664D /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
+		7B8465EF25D7E7A600B09D98 /* PersistanceStoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistanceStoreManager.swift; sourceTree = "<group>"; };
 		7BE0D7FB25D6E6A700FFB73F /* NetworkDataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataFetcher.swift; sourceTree = "<group>"; };
 		7BE0D80225D6E82D00FFB73F /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
 		7BE0D80525D6ED0C00FFB73F /* PhotoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoResponse.swift; sourceTree = "<group>"; };
@@ -83,10 +85,19 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		7B8465F225D7E7AD00B09D98 /* PersistanceStoreManager */ = {
+			isa = PBXGroup;
+			children = (
+				7B8465EF25D7E7A600B09D98 /* PersistanceStoreManager.swift */,
+			);
+			path = PersistanceStoreManager;
+			sourceTree = "<group>";
+		};
 		7BE0D7F925D6E66D00FFB73F /* Services */ = {
 			isa = PBXGroup;
 			children = (
 				7BE0D7FA25D6E68500FFB73F /* NetworkService */,
+				7B8465F225D7E7AD00B09D98 /* PersistanceStoreManager */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -105,6 +116,7 @@
 			children = (
 				7BE0D80525D6ED0C00FFB73F /* PhotoResponse.swift */,
 				7BE0D80A25D6EE8300FFB73F /* PhotoViewModel.swift */,
+				7BFFA69C25D6A44400C35652 /* CashBackForceTestTask.xcdatamodeld */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -148,7 +160,6 @@
 				7BFFA69F25D6A44600C35652 /* Assets.xcassets */,
 				7BFFA6A125D6A44600C35652 /* LaunchScreen.storyboard */,
 				7BFFA6A425D6A44600C35652 /* Info.plist */,
-				7BFFA69C25D6A44400C35652 /* CashBackForceTestTask.xcdatamodeld */,
 			);
 			path = CashBackForceTestTask;
 			sourceTree = "<group>";
@@ -334,6 +345,7 @@
 				7B0BC72C25D6D7760034664D /* MainTableViewCell.swift in Sources */,
 				7BFFA6D225D6BC6900C35652 /* DetailRouter.swift in Sources */,
 				7BE0D80E25D6EEF000FFB73F /* UIImageView+Extension.swift in Sources */,
+				7B8465F025D7E7A600B09D98 /* PersistanceStoreManager.swift in Sources */,
 				7BFFA6BD25D6A69000C35652 /* MainInteractor.swift in Sources */,
 				7BFFA6BA25D6A5BB00C35652 /* MainConfigurator.swift in Sources */,
 			);

@@ -20,28 +20,15 @@ extension UIImageView {
             return
         }
         
-        guard let url = URL(string: imageURL) else {
-            print("Invalid URL")
-            self.image = placeHolder
-            return
-        }
-        
         self.image = placeHolder
         
-        DispatchQueue.global(qos: .utility).async {
-            do {
-                let imageData: Data = try Data(contentsOf: url)
-                
-                DispatchQueue.main.async {
-                    let image = UIImage(data: imageData)
-                    self.image = image
-                }
-                
-            } catch {
-                print("Unable to load data: \(error)")
-                self.image = placeHolder
+        NetworkDataFetcher.shared.getWebImage(from: imageURL) { image in
+            
+            DispatchQueue.main.async {
+                guard let image = image else { return }
+                self.image = image
             }
+            
         }
-        
     }
 }

@@ -14,7 +14,7 @@ protocol DetailViewProtocol: class {
 
 
 class DetailViewController: UIViewController {
-
+    
     //MARK: - Properties
     var presenter: DetailPresenterProtocol!
     var configurator: DetailConfiguratorProtocol = DetailConfigurator()
@@ -29,15 +29,33 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = presenter.detailTitle
-        self.navigationController?.navigationBar.prefersLargeTitles = true
-        self.titleLabel.text = presenter.photoViewModel.photoTitle
-        self.urlLabel.text = presenter.photoViewModel.imageUrl
-        self.imageView.webImage(presenter.photoViewModel.imageUrl)
+        self.urlLabel.isUserInteractionEnabled = true
+        self.urlLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapUrlLabel)))
+        self.setViewsData()
     }
     
+    
     //MARK: - IBActions
-
+    
+    @IBAction func getPasteBoardText(_ seneder: UIButton) {
+        guard let text = presenter.pasteText() else { return }
+        print(text)
+    }
+    
     //MARK: - Methods
+    
+    private func setViewsData() {
+        
+        self.titleLabel.text = presenter.viewModel.photoTitle
+        self.urlLabel.text = presenter.viewModel.imageUrl
+        self.imageView.webImage(presenter.viewModel.imageUrl)
+        
+    }
+    
+    @objc func tapUrlLabel(gesture: UITapGestureRecognizer) {
+        presenter.copy(text: urlLabel.text)
+    }
+    
 }
 
 //MARK: - Detail View Protocol
